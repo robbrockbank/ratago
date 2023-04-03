@@ -326,6 +326,7 @@ func (style *Stylesheet) Process(doc *xml.XmlDocument, options StylesheetOptions
 	// lookup output method, doctypes, encoding
 	// create output document with appropriate values
 	output := xml.CreateEmptyDocument(doc.InputEncoding(), doc.OutputEncoding())
+	defer output.Free()
 	// init context node/document
 	context := &ExecutionContext{Output: output.Me, OutputNode: output, Style: style, Source: doc}
 	context.Current = doc
